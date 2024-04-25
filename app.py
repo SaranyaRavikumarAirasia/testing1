@@ -45,9 +45,11 @@ df['VEHICLE CLASS']= label_encoder.fit_transform(df['VEHICLE CLASS'])
 df['TRANSMISSION']= label_encoder.fit_transform(df['TRANSMISSION'])
 df['FUEL']= label_encoder.fit_transform(df['FUEL'])
 
-
-
-
+from sklearn import preprocessing
+scaler = preprocessing.MinMaxScaler()
+df[['COEMISSIONS_Scaled']] = scaler.fit_transform(df[['COEMISSIONS ']])
+# Print the scaled DataFrame
+df=df.drop(['COEMISSIONS '],axis=1)
 
 
 loaded_model = pickle.load(open("FuelConsumptionModel.h5", "rb"))
